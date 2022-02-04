@@ -1,0 +1,6 @@
+datlechin-silent-edit:
+  admin:
+
+  forum:
+    post_controls:
+      clear_last_edit_button: Clear last edit
