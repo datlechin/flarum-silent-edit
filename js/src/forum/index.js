@@ -2,12 +2,14 @@ import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 import PostControls from 'flarum/forum/utils/PostControls';
 import Button from 'flarum/common/components/Button';
+import Post from 'flarum/common/models/Post';
+import Model from 'flarum/common/Model';
 
 app.initializers.add('datlechin/flarum-silent-edit', () => {
-  extend(PostControls, 'moderationControls', function (items, post) {
-    const editedUser = post.editedUser();
+  Post.prototype.canClearLastEdit = Model.attribute('canClearLastEdit');
 
-    if (!editedUser) return;
+  extend(PostControls, 'moderationControls', function (items, post) {
+    if (!post.canClearLastEdit() || !post.editedUser()) return;
 
     items.add(
       'clearLastEdit',
