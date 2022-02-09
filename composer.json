@@ -1,6 +1,6 @@
 {
     "name": "datlechin/flarum-silent-edit",
-    "description": "Allows user groups to edit post silently",
+    "description": "Allows user groups to edit posts silently",
     "keywords": [
         "flarum"
     ],
@@ -18,7 +18,7 @@
     ],
     "support": {
         "source": "https://github.com/datlechin/flarum-silent-edit",
-        "forum": "https://discuss.flarum.org/d/29793"
+        "forum": "https://discuss.flarum.org/d/30064"
     },
     "autoload": {
         "psr-4": {

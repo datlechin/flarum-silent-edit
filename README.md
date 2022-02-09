@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/datlechin/flarum-silent-edit.svg)](https://packagist.org/packages/datlechin/flarum-silent-edit) [![Total Downloads](https://img.shields.io/packagist/dt/datlechin/flarum-silent-edit.svg)](https://packagist.org/packages/datlechin/flarum-silent-edit)
 
-A [Flarum](http://flarum.org) extension. Allows user groups to edit post silently.
+A [Flarum](http://flarum.org) extension. Allows user groups to edit posts silently.
 
 ![](https://i.imgur.com/uiL5N1r.png)
 
@@ -25,4 +25,4 @@ php flarum cache:clear
 
 - [Packagist](https://packagist.org/packages/datlechin/flarum-silent-edit)
 - [GitHub](https://github.com/datlechin/flarum-silent-edit)
-- [Discuss](https://discuss.flarum.org/d/PUT_DISCUSS_SLUG_HERE)
+- [Discuss](https://discuss.flarum.org/d/30064)
