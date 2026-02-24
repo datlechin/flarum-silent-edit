@@ -11,12 +11,10 @@
 
 namespace Datlechin\SilentEdit;
 
-use Datlechin\SilentEdit\Listeners\ClearLastEdit;
 use Flarum\Api\Context;
 use Flarum\Api\Resource\PostResource;
 use Flarum\Api\Schema;
 use Flarum\Extend;
-use Flarum\Post\Event\Saving;
 use Flarum\Post\Post;
 
 return [
@@ -32,8 +30,13 @@ return [
         ->fields(fn () => [
             Schema\Boolean::make('canClearLastEdit')
                 ->get(fn (Post $post, Context $context) => $context->getActor()->can('canClearLastEdit', $post)),
+            Schema\Boolean::make('isEdited')
+                ->writable(fn (Post $post, Context $context) => $context->getActor()->can('canClearLastEdit', $post))
+                ->set(function (Post $post, bool $value) {
+                    if (! $value) {
+                        $post->edited_at = null;
+                        $post->edited_user_id = null;
+                    }
+                }),
         ]),
-
-    (new Extend\Event())
-        ->listen(Saving::class, ClearLastEdit::class),
 ];
