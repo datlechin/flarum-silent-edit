@@ -12,7 +12,9 @@
 namespace Datlechin\SilentEdit;
 
 use Datlechin\SilentEdit\Listeners\ClearLastEdit;
-use Flarum\Api\Serializer\PostSerializer;
+use Flarum\Api\Context;
+use Flarum\Api\Resource\PostResource;
+use Flarum\Api\Schema;
 use Flarum\Extend;
 use Flarum\Post\Event\Saving;
 use Flarum\Post\Post;
@@ -26,10 +28,11 @@ return [
 
     new Extend\Locales(__DIR__ . '/locale'),
 
-    (new Extend\ApiSerializer(PostSerializer::class))
-        ->attribute('canClearLastEdit', function (PostSerializer $serializer, Post $post, array $attributes) {
-            return $serializer->getActor()->can('canClearLastEdit', $post);
-        }),
+    (new Extend\ApiResource(PostResource::class))
+        ->fields(fn () => [
+            Schema\Boolean::make('canClearLastEdit')
+                ->get(fn (Post $post, Context $context) => $context->getActor()->can('canClearLastEdit', $post)),
+        ]),
 
     (new Extend\Event())
         ->listen(Saving::class, ClearLastEdit::class),
